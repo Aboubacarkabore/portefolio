@@ -1,6 +1,7 @@
 {
   "name": "portefolio",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "cacheBust": "v2",
   "scripts": {
     "build": "echo 'Building static site...'"
   },
