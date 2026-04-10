@@ -1,7 +1,7 @@
 {
   "name": "portefolio",
-  "version": "1.0.1",
-  "cacheBust": "v2",
+  "version": "1.0.2",
+  "cacheBust": "v3-force-node-24",
   "scripts": {
     "build": "echo 'Building static site...'"
   },
