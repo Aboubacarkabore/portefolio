@@ -1,7 +1,10 @@
 {
   "name": "portefolio",
   "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'Building static site...'"
+  },
   "engines": {
-    "node": "24.x"
+    "node": "20.x"
   }
 }
