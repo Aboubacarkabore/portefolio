@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     "use strict";
 
     /*****************************
@@ -10,7 +10,7 @@
     /****************************
      * Sticky Menu
      *****************************/
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         var scroll = $(window).scrollTop();
         if (scroll < 100) {
             $(".sticky-header").removeClass("sticky");
@@ -23,12 +23,12 @@
     /*****************************
      * Off Canvas Function
      *****************************/
-    (function() {
+    (function () {
         var $offCanvasToggle = $('.offcanvas-toggle'),
             $offCanvas = $('.offcanvas'),
             $offCanvasOverlay = $('.offcanvas-overlay'),
             $mobileMenuToggle = $('.mobile-menu-toggle');
-        $offCanvasToggle.on('click', function(e) {
+        $offCanvasToggle.on('click', function (e) {
             e.preventDefault();
             var $this = $(this),
                 $target = $this.attr('href');
@@ -39,7 +39,7 @@
                 $this.addClass('close');
             }
         });
-        $('.offcanvas-close, .offcanvas-overlay').on('click', function(e) {
+        $('.offcanvas-close, .offcanvas-overlay').on('click', function (e) {
             e.preventDefault();
             $body.removeClass('offcanvas-open');
             $offCanvas.removeClass('offcanvas-open');
@@ -60,7 +60,7 @@
         $offCanvasNavSubMenu.parent().prepend('<div class="offcanvas-menu-expand"></div>');
 
         /*Category Sub Menu Toggle*/
-        $offCanvasNav.on('click', 'li a, .offcanvas-menu-expand', function(e) {
+        $offCanvasNav.on('click', 'li a, .offcanvas-menu-expand', function (e) {
             var $this = $(this);
             if ($this.attr('href') === '#' || $this.hasClass('offcanvas-menu-expand')) {
                 e.preventDefault();
@@ -83,35 +83,35 @@
     /****************************************
      *   Service Slider
      *****************************************/
-        var service_display_slider = new Swiper('.service-display-slider .swiper-container', {
-            slidesPerView: 3,
-            speed: 1500,
-            loop: true,
-            spaceBetween: 45,
-            pagination: {
-                el: '.service-display-dots .swiper-pagination',
-                clickable: true,
-              },
-    
-            breakpoints: {
-    
-                320: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1200: {
-                    slidesPerView: 3,
-                },
-                
-            }
-        });
+    var service_display_slider = new Swiper('.service-display-slider .swiper-container', {
+        slidesPerView: 3,
+        speed: 1500,
+        loop: true,
+        spaceBetween: 45,
+        pagination: {
+            el: '.service-display-dots .swiper-pagination',
+            clickable: true,
+        },
+
+        breakpoints: {
+
+            320: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1200: {
+                slidesPerView: 3,
+            },
+
+        }
+    });
 
 
-   /****************************************
-    *  Project Slider 
-    *****************************************/
+    /****************************************
+     *  Project Slider 
+     *****************************************/
     var project_display_slider = new Swiper('.project-display-slider .swiper-container', {
         spaceBetween: 50,
         effect: 'slide',
@@ -137,13 +137,13 @@
                 centeredSlides: true,
                 slidesPerView: 3,
             }
-            
-        }
-      });
 
-   /****************************************
-    *  Testimonial Slider
-    *****************************************/
+        }
+    });
+
+    /****************************************
+     *  Testimonial Slider
+     *****************************************/
     var testimonial_display_slider = new Swiper('.testimonial-display-slider .swiper-container', {
         slidesPerView: 2,
         loop: true,
@@ -171,13 +171,13 @@
             1800: {
                 spaceBetween: 175,
             }
-            
-        }
-      });
 
-   /****************************************
-    *  Company Logo Slider
-    *****************************************/
+        }
+    });
+
+    /****************************************
+     *  Company Logo Slider
+     *****************************************/
     var company_logo_display_slider = new Swiper('.company-logo-display-slider .swiper-container', {
         slidesPerView: 4,
         loop: true,
@@ -189,28 +189,28 @@
             },
             480: {
                 slidesPerView: 2,
-                spaceBetween:50,
+                spaceBetween: 50,
             },
             576: {
                 slidesPerView: 2,
-                spaceBetween:50,
+                spaceBetween: 50,
             },
             768: {
                 slidesPerView: 3,
-                spaceBetween:50,
+                spaceBetween: 50,
             },
             992: {
                 slidesPerView: 3,
-                spaceBetween:60,
+                spaceBetween: 60,
             },
             1200: {
                 slidesPerView: 4,
                 spaceBetween: 85,
             }
         }
-      });
+    });
 
-      
+
     /************************************************
      * Counter Up
      ***********************************************/
@@ -222,36 +222,36 @@
     /************************************************
      * Video  Popup
      ***********************************************/
-    $('.wave-btn').venobox(); 
+    $('.wave-btn').venobox();
 
     /************************************************
      * Project Filter
      ***********************************************/
-      $('.projects-wrapper-gallery-content').imagesLoaded( function() {
-         $('.projects-gallery-filter-nav').on( 'click', 'button', function() {
+    $('.projects-wrapper-gallery-content').imagesLoaded(function () {
+        $('.projects-gallery-filter-nav').on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
             $grid.isotope({ filter: filterValue });
-             
+
             $(this).siblings('.active').removeClass('active');
             $(this).addClass('active');
-         });
+        });
 
         var $grid = $('.projects-wrapper-gallery-content').isotope({
             itemSelector: '.filter-item',
-             percentPosition: true,
-         });
-     });
+            percentPosition: true,
+        });
+    });
 
 
-     /************************************************
-     * Progressbar
-     ***********************************************/
-      if($('.progress-line').length){
-        $('.progress-line').appear(function(){
+    /************************************************
+    * Progressbar
+    ***********************************************/
+    if ($('.progress-line').length) {
+        $('.progress-line').appear(function () {
             var el = $(this);
             var percent = el.data('width');
-            $(el).css('width',percent+'%');
-        },{accY: 0});
+            $(el).css('width', percent + '%');
+        }, { accY: 0 });
     };
 
     /************************************************
