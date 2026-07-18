@@ -91,13 +91,15 @@
     }
 
     /* ==========================================================
-       Contact form — validation visuelle + envoi via mailto
+       Contact form — validation visuelle + envoi direct (FormSubmit)
        ========================================================== */
     function initContactForm() {
         var form = document.getElementById('ask-contact-form');
         if (!form) return;
 
         var note = form.querySelector('.ask-form-note');
+        var submitBtn = form.querySelector('.ask-form-submit');
+        var submitLabel = submitBtn ? submitBtn.childNodes[0].textContent : '';
         var fields = {
             name: form.querySelector('[name="name"]'),
             email: form.querySelector('[name="email"]'),
@@ -153,18 +155,55 @@
                 return;
             }
 
-            var subject = encodeURIComponent('[Portfolio] ' + fields.subject.value.trim());
-            var body = encodeURIComponent(
-                'Nom: ' + fields.name.value.trim() + '\n' +
-                'Email: ' + fields.email.value.trim() + '\n\n' +
-                fields.message.value.trim()
-            );
-            window.location.href = 'mailto:boubaKabore50@gmail.com?subject=' + subject + '&body=' + body;
-
-            if (note) {
-                note.textContent = 'Votre client mail va s\'ouvrir pour envoyer le message. Merci !';
-                note.className = 'ask-form-note success';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.childNodes[0].textContent = 'Envoi en cours... ';
             }
+            if (note) {
+                note.textContent = '';
+                note.className = 'ask-form-note';
+            }
+
+            var endpoint = 'https://formsubmit.co/ajax/boubaKabore50@gmail.com';
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: fields.name.value.trim(),
+                    email: fields.email.value.trim(),
+                    subject: fields.subject.value.trim(),
+                    message: fields.message.value.trim(),
+                    _subject: '[Portfolio] ' + fields.subject.value.trim(),
+                    _template: 'table'
+                })
+            })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('Envoi impossible');
+                    form.reset();
+                    Object.keys(fields).forEach(function (key) {
+                        var group = fields[key].closest('.ask-form-group');
+                        if (group) group.classList.remove('is-valid', 'is-invalid');
+                    });
+                    if (note) {
+                        note.textContent = 'Message envoyé avec succès ! Je vous répondrai rapidement.';
+                        note.className = 'ask-form-note success';
+                    }
+                })
+                .catch(function () {
+                    if (note) {
+                        note.textContent = 'Une erreur est survenue. Merci de réessayer ou de m\'écrire directement à boubaKabore50@gmail.com.';
+                        note.className = 'ask-form-note error';
+                    }
+                })
+                .finally(function () {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.childNodes[0].textContent = submitLabel;
+                    }
+                });
         });
     }
 

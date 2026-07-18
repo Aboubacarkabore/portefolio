@@ -121,6 +121,45 @@
     position: relative;
 }
 
+/* ---------------------------------------------------------
+   Hero: fix fragile pixel-perfect nth-child positioning of the
+   floating social icons over the portrait (was off-screen at
+   most viewport widths) — anchor them to the image's right edge
+   with a simple, robust flex stack instead.
+   --------------------------------------------------------- */
+.hero-portrait .social-link {
+    position: absolute;
+    right: -14px;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 11;
+}
+
+.hero-portrait .social-link a {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transition: transform .35s ease, background .35s ease, border-color .35s ease;
+}
+
+.hero-portrait .social-link a:hover {
+    transform: translateY(-3px);
+    background: var(--ask-blue);
+    border-color: var(--ask-blue);
+}
+
+@media (min-width: 992px) {
+    .hero-portrait .social-link {
+        right: -22px;
+        gap: 16px;
+    }
+}
+
 .hero-subtitle {
     color: var(--ask-text-muted);
     font-size: 16px;
@@ -157,41 +196,76 @@
    --------------------------------------------------------- */
 .skill-bento-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
 
 .skill-bento-item {
-    grid-column: span 6;
-    padding: 28px 28px 32px;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-@media (min-width: 576px) {
-    .skill-bento-item {
-        grid-column: span 3;
+@media (min-width: 420px) {
+    .skill-bento-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .skill-bento-item.bento-wide {
-        grid-column: span 6;
-    }
-}
-
-@media (min-width: 1200px) {
-    .skill-bento-item {
+    .skill-bento-item.bento-hero {
         grid-column: span 2;
     }
-
-    .skill-bento-item.bento-wide {
-        grid-column: span 4;
-    }
 }
 
-.skill-bento-item .tag {
+.skill-bento-item.bento-hero {
+    padding: 30px;
+}
+
+.skill-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.skill-bento-item.bento-hero .skill-card-head {
+    margin-bottom: 22px;
+}
+
+.skill-title-group {
+    min-width: 0;
+}
+
+.skill-title {
     display: block;
     color: #fff;
-    font-weight: 600;
-    margin-bottom: 22px;
+    font-weight: 700;
     font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.skill-bento-item.bento-hero .skill-title {
+    font-size: 20px;
+}
+
+.skill-tools {
+    display: block;
+    color: var(--ask-text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.skill-percent-badge {
+    flex-shrink: 0;
+    background: var(--ask-blue-soft);
+    border: 1px solid rgba(77, 141, 255, 0.35);
+    color: var(--ask-blue);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
 }
 
 .skill-bento-item .skill-box {
@@ -213,15 +287,6 @@
     background: linear-gradient(90deg, var(--ask-blue-strong), var(--ask-blue));
     box-shadow: 0 0 16px var(--ask-blue-glow);
     transition: width 1.4s cubic-bezier(.22, 1, .36, 1);
-}
-
-.skill-bento-item .skill-percentage {
-    position: absolute;
-    right: 0;
-    top: -34px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ask-blue);
 }
 
 /* ---------------------------------------------------------
