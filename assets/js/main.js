@@ -178,37 +178,39 @@
     /****************************************
      *  Company Logo Slider
      *****************************************/
-    var company_logo_display_slider = new Swiper('.company-logo-display-slider .swiper-container', {
-        slidesPerView: 4,
-        loop: true,
+    if ($('.company-logo-display-slider .swiper-container').length) {
+        var company_logo_display_slider = new Swiper('.company-logo-display-slider .swiper-container', {
+            slidesPerView: 4,
+            loop: true,
 
-        breakpoints: {
+            breakpoints: {
 
-            0: {
-                slidesPerView: 1,
-            },
-            480: {
-                slidesPerView: 2,
-                spaceBetween: 50,
-            },
-            576: {
-                slidesPerView: 2,
-                spaceBetween: 50,
-            },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 50,
-            },
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 60,
-            },
-            1200: {
-                slidesPerView: 4,
-                spaceBetween: 85,
+                0: {
+                    slidesPerView: 1,
+                },
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                },
+                576: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 60,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 85,
+                }
             }
-        }
-    });
+        });
+    }
 
 
     /************************************************
