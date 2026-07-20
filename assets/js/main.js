@@ -120,7 +120,7 @@
         autoplay: {
             delay: 3500,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+            pauseOnMouseEnter: false,
         },
         // Navigation arrows
         navigation: {
