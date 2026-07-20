@@ -116,6 +116,12 @@
         spaceBetween: 50,
         effect: 'slide',
         speed: 1500,
+        loop: true,
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
         // Navigation arrows
         navigation: {
             nextEl: '.project-display-box .button-next',
